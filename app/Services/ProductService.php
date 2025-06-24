@@ -7,17 +7,11 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductService
 {
-
-
-
-
     public function index() {
         return Product::all();
     }
 
     public function store(array $data) {
-
-
         /**
          * Auth::user() — текущий пользователь.
          * products() — метод-связь hasMany из User.
