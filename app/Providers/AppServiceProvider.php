@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +20,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        /**
+         * define — регистрирует правило.
+         * В данном случае регистрируем правило 'isAdmin' и логику (анонимную функию) для него
+         */
+        Gate::define('isAdmin', function($user){
+            return $user->role === 'admin';
+        });
     }
 }
