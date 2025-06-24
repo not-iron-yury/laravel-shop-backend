@@ -6,9 +6,13 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use App\Models\Product;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class AuthController extends Controller
 {
+    use AuthorizesRequests; // authorize()
+
     // регистрация
     public function register(Request $request) {
         $fields = $request->validate([
@@ -78,6 +82,8 @@ class AuthController extends Controller
     }
 
     public function me(Request $request) {
+        // $product = Product::find(1); // временно, для проверки ProductPolicy
+        // $this->authorize('update', $product); // временно, для проверки ProductPolicy
         return response()->json($request->user());
     }
 }
